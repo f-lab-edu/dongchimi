@@ -1,0 +1,33 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  sql:
+    init:
+      mode: always
+      path: /h2-console
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    defer-datasource-initialization: true
+
+
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace

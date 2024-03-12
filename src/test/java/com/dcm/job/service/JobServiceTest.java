@@ -1,7 +1,7 @@
 package com.dcm.job.service;
 
 import com.dcm.job.domain.Job;
-import com.dcm.job.domain.Repository.JobRepository;
+import com.dcm.job.domain.repository.JobRepository;
 import com.dcm.job.dto.JobRequest;
 import com.dcm.job.dto.JobResponse;
 import com.dcm.job.exception.NotFoundJobException;
@@ -35,8 +35,8 @@ class JobServiceTest {
     void successReadJobs() {
         // given
         List<Job> mockJobs = List.of(
-                new Job(1L, "JOB_THEME", "대기업", "Y"),
-                new Job(2L, "JOB_THEME", "외국계", "Y"));
+                Job.of(1L, "JOB_THEME", "대기업", "Y"),
+                Job.of(2L, "JOB_THEME", "외국계", "Y"));
 
         // when
         when(jobRepository.findAll()).thenReturn(mockJobs);

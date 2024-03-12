@@ -1,4 +1,4 @@
-package com.dcm.job.domain.Repository;
+package com.dcm.job.domain.repository;
 
 import com.dcm.job.domain.Job;
 import org.springframework.data.jpa.repository.JpaRepository;

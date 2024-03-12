@@ -2,12 +2,12 @@ package com.dcm.job.domain;
 
 import com.dcm.global.domain.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Entity
 @Getter
-@Builder
+@AllArgsConstructor
 @Table(name = "JOB")
 public class Job extends BaseEntity {
 
@@ -26,17 +26,12 @@ public class Job extends BaseEntity {
 
     protected Job() {}
 
-    public Job(final String jobType, final String jobName, final String useYn) {
-        this.jobType = jobType;
-        this.jobName = jobName;
-        this.useYn = useYn;
+    public static Job of(final String jobType, final String jobName, final String useYn) {
+        return of(null, jobType, jobName, useYn);
     }
 
-    public Job(final Long jobId, final String jobType, final String jobName, final String useYn) {
-        this.jobId = jobId;
-        this.jobType = jobType;
-        this.jobName = jobName;
-        this.useYn = useYn;
+    public static Job of(final Long jobId, final String jobType, final String jobName, final String useYn) {
+        return new Job(jobId, jobType, jobName, useYn);
     }
 
 

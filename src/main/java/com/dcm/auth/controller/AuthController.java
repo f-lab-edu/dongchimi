@@ -1,5 +1,6 @@
 package com.dcm.auth.controller;
 
+import com.dcm.auth.dto.TokenResponse;
 import com.dcm.auth.service.AuthService;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class AuthController {
 
     @GetMapping("/{platform}/uri")
     public ResponseEntity<Void> createOAuthRedirectUri(@PathVariable final String platform,
-                                                       @RequestParam final String redirectUri) {
+                                                       @RequestParam @NotBlank final String redirectUri) {
         String platformRedirectUri = authService.createOAuthRedirectUri(platform, redirectUri);
         return ResponseEntity.status(HttpStatus.OK)
                 .header(HttpHeaders.LOCATION, platformRedirectUri)
@@ -25,8 +26,12 @@ public class AuthController {
     }
 
     @GetMapping("/{platform}/login")
-    public Object successLogin(@PathVariable final String platform,
-                               @RequestParam @NotBlank final String code) {
-        return authService.createOAuthAccessToken(platform, code);
+    public ResponseEntity<Void> login(@PathVariable final String platform,
+                                      @RequestParam @NotBlank final String code) {
+        TokenResponse token = authService.login(platform, code);
+        return ResponseEntity.status(HttpStatus.OK)
+                .header("access-token", token.accessToken())
+                .header("refresh-token", token.refreshToken())
+                .build();
     }
 }

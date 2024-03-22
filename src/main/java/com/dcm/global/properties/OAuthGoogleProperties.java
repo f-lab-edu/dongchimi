@@ -15,10 +15,12 @@ public class OAuthGoogleProperties {
     private final String tokenUri;
     private final String endPointUri;
     private final String redirectUri;
+    private final String userInfoUri;
     private final String accessType;
 
     public OAuthGoogleProperties(final String clientId, final String clientSecret, final String responseType, final List<String> scopes,
-                                 final String tokenUri, final String endPointUri, final String redirectUri, final String accessType) {
+                                 final String tokenUri, final String endPointUri, final String redirectUri, final String accessType,
+                                 final String userInfoUri) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.responseType = responseType;
@@ -26,6 +28,7 @@ public class OAuthGoogleProperties {
         this.tokenUri = tokenUri;
         this.endPointUri = endPointUri;
         this.redirectUri = redirectUri;
+        this.userInfoUri = userInfoUri;
         this.accessType = accessType;
     }
 
@@ -55,6 +58,10 @@ public class OAuthGoogleProperties {
 
     public String getRedirectUri() {
         return redirectUri;
+    }
+
+    public String getUserInfoUri() {
+        return userInfoUri;
     }
 
     public String getAccessType() {

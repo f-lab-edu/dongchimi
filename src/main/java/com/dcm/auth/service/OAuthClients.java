@@ -3,6 +3,7 @@ package com.dcm.auth.service;
 import com.dcm.auth.domain.OAuth;
 import com.dcm.auth.domain.OAuthClient;
 import com.dcm.auth.dto.TokenResponse;
+import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.auth.exception.NotFoundPlatformException;
 
 import java.util.EnumMap;
@@ -24,7 +25,12 @@ public class OAuthClients {
     }
 
     public TokenResponse getToken(final OAuth oAuth, final String code) {
-        return this.getClient(oAuth).createGoogleAccessToken(code);
+        return this.getClient(oAuth).createToken(code);
+    }
+
+    public UserInfoResponse getUserInfo(final OAuth oAuth, final String token, final String tokenType) {
+        String bearerToken = String.format("%s %s", tokenType, token);
+        return this.getClient(oAuth).fetchUserInfo(bearerToken);
     }
 
     private OAuthClient getClient(final OAuth oAuth) {

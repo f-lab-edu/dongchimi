@@ -1,7 +1,9 @@
 package com.dcm.auth.domain;
 
-import com.dcm.auth.dto.OAuthGoogleAccessResponse;
+import com.dcm.auth.dto.OAuthGoogleTokenResponse;
+import com.dcm.auth.dto.OAuthGoogleUserInfoResponse;
 import com.dcm.auth.dto.TokenResponse;
+import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.global.properties.OAuthGoogleProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 @RequiredArgsConstructor
@@ -19,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 public class OAuthGoogleClient implements OAuthClient {
 
     private final OAuthGoogleProperties properties;
-    private final RestTemplate restTemplate;
+    private final OAuthHttpClient oAuthHttpClient;
 
     @Override
     public String createUri(final String redirectUri) {
@@ -33,12 +34,17 @@ public class OAuthGoogleClient implements OAuthClient {
     }
 
     @Override
-    public TokenResponse createGoogleAccessToken(final String code) {
-        // 사용자 인증 API 호출
+    public TokenResponse createToken(final String code) {
         MultiValueMap<String, String> params = this.createOAuthGoogleParams(code, properties.getRedirectUri());
         HttpEntity<MultiValueMap<String, String>> httpEntity = this.createHttpEntity(params);
-        OAuthGoogleAccessResponse googleAccessToken = fetchGoogleToken(httpEntity);
-        return new TokenResponse(googleAccessToken.access_token(), googleAccessToken.refresh_token());
+        OAuthGoogleTokenResponse googleAccessToken = oAuthHttpClient.fetchGoogleToken(httpEntity);
+        return new TokenResponse(googleAccessToken.access_token(), googleAccessToken.refresh_token(), googleAccessToken.token_type());
+    }
+
+    @Override
+    public UserInfoResponse fetchUserInfo(final String token) {
+        OAuthGoogleUserInfoResponse oAuthGoogleUserInfoResponse = oAuthHttpClient.fetchGoogleUserInfo(token);
+        return  UserInfoResponse.of(oAuthGoogleUserInfoResponse, OAuth.GOOGLE);
     }
 
     private MultiValueMap<String, String> createOAuthGoogleParams(final String code, final String redirectUri) {
@@ -51,19 +57,10 @@ public class OAuthGoogleClient implements OAuthClient {
         return params;
     }
 
-    private HttpEntity<MultiValueMap<String, String>> createHttpEntity(MultiValueMap<String, String> params) {
+    private HttpEntity<MultiValueMap<String, String>> createHttpEntity(final MultiValueMap<String, String> params) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         return new HttpEntity<>(params, headers);
-    }
-
-    private OAuthGoogleAccessResponse fetchGoogleToken(HttpEntity<MultiValueMap<String, String>> httpEntity) {
-        try {
-            return restTemplate.postForEntity(properties.getTokenUri(), httpEntity, OAuthGoogleAccessResponse.class).getBody();
-        } catch (Exception e) {
-            log.warn(e.getMessage());
-            throw new RuntimeException("구글 로그인에 접근을 허용하지 않았습니다.");
-        }
     }
 
     @Override

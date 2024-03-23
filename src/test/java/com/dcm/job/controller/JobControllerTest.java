@@ -55,7 +55,7 @@ class JobControllerTest {
         // when & then
         mockMvc.perform(get("/api/job"))
                 .andDo(print())
-                .andDo(document("업종 목록",
+                .andDo(document("read-jobs",
                         preprocessRequest(prettyPrint()),
                         Preprocessors.preprocessResponse(prettyPrint()),
                         responseFields(

@@ -26,12 +26,10 @@ public class AuthController {
     }
 
     @GetMapping("/{platform}/login")
-    public ResponseEntity<Void> login(@PathVariable final String platform,
+    public ResponseEntity<TokenResponse> login(@PathVariable final String platform,
                                       @RequestParam @NotBlank final String code) {
         TokenResponse token = authService.login(platform, code);
         return ResponseEntity.status(HttpStatus.OK)
-                .header("access-token", token.accessToken())
-                .header("refresh-token", token.refreshToken())
-                .build();
+                .body(token);
     }
 }

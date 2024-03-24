@@ -20,7 +20,7 @@ public class OAuthGoogleClient implements OAuthClient {
     private final OAuthHttpClient oAuthHttpClient;
 
     @Override
-    public String createUri(final String redirectUri) {
+    public String createUri(String redirectUri) {
         return properties.getEndPointUri() + "?" +
                 "client_id=" + properties.getClientId() +
                 "&redirect_uri=" + redirectUri +
@@ -31,19 +31,19 @@ public class OAuthGoogleClient implements OAuthClient {
     }
 
     @Override
-    public TokenResponse createToken(final String code) {
+    public TokenResponse createToken(String code) {
         MultiValueMap<String, String> params = this.createOAuthGoogleParams(code, properties.getRedirectUri());
         OAuthGoogleTokenResponse googleAccessToken = oAuthHttpClient.fetchGoogleToken(params);
         return new TokenResponse(googleAccessToken.access_token(), googleAccessToken.refresh_token(), googleAccessToken.token_type());
     }
 
     @Override
-    public UserInfoResponse fetchUserInfo(final String token) {
+    public UserInfoResponse fetchUserInfo(String token) {
         OAuthGoogleUserInfoResponse oAuthGoogleUserInfoResponse = oAuthHttpClient.fetchGoogleUserInfo(token);
         return  UserInfoResponse.of(oAuthGoogleUserInfoResponse, OAuth.GOOGLE);
     }
 
-    private MultiValueMap<String, String> createOAuthGoogleParams(final String code, final String redirectUri) {
+    private MultiValueMap<String, String> createOAuthGoogleParams(String code, String redirectUri) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("client_id", properties.getClientId());
         params.add("client_secret", properties.getClientSecret());

@@ -18,9 +18,9 @@ public class OAuthGoogleProperties {
     private final String userInfoUri;
     private final String accessType;
 
-    public OAuthGoogleProperties(final String clientId, final String clientSecret, final String responseType, final List<String> scopes,
-                                 final String tokenUri, final String endPointUri, final String redirectUri, final String accessType,
-                                 final String userInfoUri) {
+    public OAuthGoogleProperties(String clientId, String clientSecret, String responseType, List<String> scopes,
+                                 String tokenUri, String endPointUri, String redirectUri, String accessType,
+                                 String userInfoUri) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.responseType = responseType;

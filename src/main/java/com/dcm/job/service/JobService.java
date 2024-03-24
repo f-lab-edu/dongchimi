@@ -24,18 +24,18 @@ public class JobService {
     }
 
     @Transactional
-    public void writeJobs(final JobRequest jobRequest) {
+    public void writeJobs(JobRequest jobRequest) {
         Job job = Job.of(jobRequest.jobType(), jobRequest.jobName(), jobRequest.useYn());
         jobRepository.save(job);
     }
 
     @Transactional
-    public void deleteJob(final Long jobId) {
+    public void deleteJob(Long jobId) {
         validate(jobId);
         jobRepository.deleteById(jobId);
     }
 
-    private void validate(final Long jobId) {
+    private void validate(Long jobId) {
         if (!jobRepository.existsById(jobId))
             throw new NotFoundJobException(jobId);
     }

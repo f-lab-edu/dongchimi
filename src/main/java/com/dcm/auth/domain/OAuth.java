@@ -8,7 +8,7 @@ public enum OAuth {
 
     GOOGLE;
 
-    public static OAuth from(final String platform) {
+    public static OAuth from(String platform) {
         return Arrays.stream(OAuth.values())
                 .filter(oauth -> oauth.name().equalsIgnoreCase(platform))
                 .findFirst()

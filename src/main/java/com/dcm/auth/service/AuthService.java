@@ -3,8 +3,8 @@ package com.dcm.auth.service;
 import com.dcm.auth.domain.OAuth;
 import com.dcm.auth.dto.TokenResponse;
 import com.dcm.auth.dto.UserInfoResponse;
-import com.dcm.user.domain.User;
-import com.dcm.user.domain.repository.UserRepository;
+import com.dcm.member.domain.Member;
+import com.dcm.member.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthService {
 
     private final OAuthClients clients;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     public String createOAuthRedirectUri(final String platform, final String redirectUri) {
         return clients.getRedirectUri(OAuth.from(platform), redirectUri);
@@ -27,7 +27,7 @@ public class AuthService {
         UserInfoResponse userInfo = clients.getUserInfo(oAuth, token.accessToken(), token.tokenType());
 
         // user update
-        userRepository.save(User.of(userInfo));
+        memberRepository.save(Member.of(userInfo));
         return token;
     }
 

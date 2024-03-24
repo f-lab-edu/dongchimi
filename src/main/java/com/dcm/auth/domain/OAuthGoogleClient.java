@@ -7,9 +7,6 @@ import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.global.properties.OAuthGoogleProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -36,8 +33,7 @@ public class OAuthGoogleClient implements OAuthClient {
     @Override
     public TokenResponse createToken(final String code) {
         MultiValueMap<String, String> params = this.createOAuthGoogleParams(code, properties.getRedirectUri());
-        HttpEntity<MultiValueMap<String, String>> httpEntity = this.createHttpEntity(params);
-        OAuthGoogleTokenResponse googleAccessToken = oAuthHttpClient.fetchGoogleToken(httpEntity);
+        OAuthGoogleTokenResponse googleAccessToken = oAuthHttpClient.fetchGoogleToken(params);
         return new TokenResponse(googleAccessToken.access_token(), googleAccessToken.refresh_token(), googleAccessToken.token_type());
     }
 
@@ -55,12 +51,6 @@ public class OAuthGoogleClient implements OAuthClient {
         params.add("grant_type", "authorization_code");
         params.add("redirect_uri", redirectUri);
         return params;
-    }
-
-    private HttpEntity<MultiValueMap<String, String>> createHttpEntity(final MultiValueMap<String, String> params) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        return new HttpEntity<>(params, headers);
     }
 
     @Override

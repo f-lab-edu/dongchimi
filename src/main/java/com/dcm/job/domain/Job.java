@@ -26,11 +26,11 @@ public class Job extends BaseEntity {
 
     protected Job() {}
 
-    public static Job of(final String jobType, final String jobName, final String useYn) {
+    public static Job of(String jobType, String jobName, String useYn) {
         return of(null, jobType, jobName, useYn);
     }
 
-    public static Job of(final Long jobId, final String jobType, final String jobName, final String useYn) {
+    public static Job of(Long jobId, String jobType, String jobName, String useYn) {
         return new Job(jobId, jobType, jobName, useYn);
     }
 

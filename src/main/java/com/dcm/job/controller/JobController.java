@@ -24,13 +24,13 @@ public class JobController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> writeJobs(@RequestBody @Valid final JobRequest jobRequest) {
+    public ResponseEntity<Void> writeJobs(@RequestBody @Valid JobRequest jobRequest) {
         jobService.writeJobs(jobRequest);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{jobId}")
-    public ResponseEntity<Void> deleteJobs(@PathVariable final Long jobId) {
+    public ResponseEntity<Void> deleteJobs(@PathVariable Long jobId) {
         jobService.deleteJob(jobId);
         return ResponseEntity.ok().build();
     }

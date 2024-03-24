@@ -16,12 +16,12 @@ public class AuthService {
     private final OAuthClients clients;
     private final MemberRepository memberRepository;
 
-    public String createOAuthRedirectUri(final String platform, final String redirectUri) {
+    public String createOAuthRedirectUri(String platform, String redirectUri) {
         return clients.getRedirectUri(OAuth.from(platform), redirectUri);
     }
 
     @Transactional
-    public TokenResponse login(final String platform, final String code) {
+    public TokenResponse login(String platform, String code) {
         OAuth oAuth = OAuth.from(platform);
         TokenResponse token = clients.getToken(oAuth, code);
         UserInfoResponse userInfo = clients.getUserInfo(oAuth, token.accessToken(), token.tokenType());

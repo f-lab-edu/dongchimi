@@ -11,7 +11,7 @@ import java.util.Set;
 public class OAuthClientConfig {
 
     @Bean
-    public OAuthClients oAuthClients(final Set<OAuthClient> clients) {
+    public OAuthClients oAuthClients(Set<OAuthClient> clients) {
         return new OAuthClients(clients);
     }
 

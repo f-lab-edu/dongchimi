@@ -1,19 +1,20 @@
-package com.dcm.user.domain;
+package com.dcm.member.domain;
 
 import com.dcm.auth.domain.OAuth;
 import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.global.domain.BaseEntity;
 import com.dcm.job.domain.Job;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class Member extends BaseEntity {
 
     @Id
     private String email;
@@ -34,13 +35,13 @@ public class User extends BaseEntity {
 
     private String profileUpdateYN;
 
-    @ManyToOne
-    private Job job;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Job> job = new ArrayList<>();
 
-    protected User() {};
+    protected Member() {};
 
-    public static User of(UserInfoResponse userInfo) {
-        return User.builder()
+    public static Member of(UserInfoResponse userInfo) {
+        return Member.builder()
                 .email(userInfo.email())
                 .nickname(userInfo.nickname())
                 .picture(userInfo.picture())

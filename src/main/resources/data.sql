@@ -1,10 +1,10 @@
+-- Job
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '대기업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '외국계', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '공기업/공무원', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '사업/창업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '프리랜서', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_THEME', '대학생', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
-
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '의료/건강/제약', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', 'IT/포털/인터넷', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '교육업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
@@ -21,7 +21,7 @@ insert into job (job_type, job_name, use_yn, create_date, update_date ) values (
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '조선/중공업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '패션/의류/뷰티', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '건축/건설/인테리어', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
-insert into job ( job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '물류/항공/운수', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
+insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '물류/항공/운수', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '백화점/유통/소비재', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '문화/예술', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '방송/언론/출판', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
@@ -30,3 +30,5 @@ insert into job (job_type, job_name, use_yn, create_date, update_date ) values (
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '식음료/외식업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into job (job_type, job_name, use_yn, create_date, update_date ) values ('JOB_GROUND', '서비스업', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 
+-- Member
+insert into member (email, nickname, phone, address, address_name, gender, picture, platform, profile_update_yn, create_date, update_date) values ('test@test.com', 'test', '010-0000-1111', '', '', 'M', '', '0', 'Y', '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')

@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Builder
 @AllArgsConstructor
+@Table(name = "MEMBER")
 public class Member extends BaseEntity {
 
     @Id
@@ -33,7 +34,7 @@ public class Member extends BaseEntity {
 
     private OAuth platform;
 
-    private String profileUpdateYN;
+    private String profileUpdateYn;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Job> job = new ArrayList<>();

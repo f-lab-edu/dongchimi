@@ -2,12 +2,15 @@ package com.dcm.job.domain;
 
 import com.dcm.global.domain.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "JOB")
 public class Job extends BaseEntity {
 
@@ -23,8 +26,6 @@ public class Job extends BaseEntity {
 
     @Column(nullable = false)
     private String useYn;
-
-    protected Job() {}
 
     public static Job of(String jobType, String jobName, String useYn) {
         return of(null, jobType, jobName, useYn);

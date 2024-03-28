@@ -5,8 +5,10 @@ import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.global.domain.BaseEntity;
 import com.dcm.job.domain.Job;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "MEMBER")
 public class Member extends BaseEntity {
 
@@ -39,7 +42,6 @@ public class Member extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Job> job = new ArrayList<>();
 
-    protected Member() {};
 
     public static Member of(UserInfoResponse userInfo) {
         return Member.builder()

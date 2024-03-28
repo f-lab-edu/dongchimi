@@ -1,5 +1,9 @@
 package com.dcm.auth.dto;
 
-public record OAuthGoogleTokenResponse(String access_token, String expires_in, String refresh_token, String scope,
-                                       String token_type) {
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(value = SnakeCaseStrategy.class)
+public record OAuthGoogleTokenResponse(String accessToken, String expiresIn, String refreshToken, String scope,
+                                       String tokenType) {
 }

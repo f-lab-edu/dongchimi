@@ -3,16 +3,16 @@ package com.dcm.hobby.domain;
 import com.dcm.global.domain.BaseEntity;
 import com.dcm.hobby_detail.domain.HobbyDetail;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 @Table(name = "HOBBY")
 public class Hobby extends BaseEntity {
 
@@ -29,5 +29,18 @@ public class Hobby extends BaseEntity {
     @OneToMany(mappedBy = "hobby", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HobbyDetail> hobbyDetails = new ArrayList<>();
 
+    public static Hobby of(String hobbyName, String useYn) {
+        return Hobby.builder()
+                .hobbyName(hobbyName)
+                .useYn(useYn)
+                .build();
+    }
 
+    public static Hobby of(Long hobbyId, String hobbyName, String useYn) {
+        return Hobby.builder()
+                .hobbyId(hobbyId)
+                .hobbyName(hobbyName)
+                .useYn(useYn)
+                .build();
+    }
 }

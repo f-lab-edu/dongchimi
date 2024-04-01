@@ -5,11 +5,13 @@ import com.dcm.auth.domain.OAuthClient;
 import com.dcm.auth.dto.TokenResponse;
 import com.dcm.auth.dto.UserInfoResponse;
 import com.dcm.auth.exception.NotFoundPlatformException;
+import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
 
+@Component
 public class OAuthClients {
 
     private final Map<OAuth, OAuthClient> clients;

@@ -16,11 +16,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/{platform}/uri")
+    @PostMapping("/{platform}")
     public ResponseEntity<Void> createOAuthRedirectUri(@PathVariable final String platform,
                                                        @RequestParam @NotBlank final String redirectUri) {
         String platformRedirectUri = authService.createOAuthRedirectUri(platform, redirectUri);
-        return ResponseEntity.status(HttpStatus.OK)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .header(HttpHeaders.LOCATION, platformRedirectUri)
                 .build();
     }

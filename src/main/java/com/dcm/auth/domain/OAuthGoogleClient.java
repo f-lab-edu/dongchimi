@@ -34,7 +34,7 @@ public class OAuthGoogleClient implements OAuthClient {
     public TokenResponse createToken(String code) {
         MultiValueMap<String, String> params = this.createOAuthGoogleParams(code, properties.getRedirectUri());
         OAuthGoogleTokenResponse googleAccessToken = oAuthHttpClient.fetchGoogleToken(params);
-        return new TokenResponse(googleAccessToken.access_token(), googleAccessToken.refresh_token(), googleAccessToken.token_type());
+        return new TokenResponse(googleAccessToken.accessToken(), googleAccessToken.refreshToken(), googleAccessToken.tokenType());
     }
 
     @Override

@@ -1,5 +1,9 @@
 package com.dcm.auth.dto;
 
-public record OAuthGoogleUserInfoResponse(String id, String email, String name, String given_name,
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(value = SnakeCaseStrategy.class)
+public record OAuthGoogleUserInfoResponse(String id, String email, String name, String givenName,
         String picture, String locale) {
 }

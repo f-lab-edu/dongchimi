@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/hobby")
+@RequestMapping("/api/hobby")
 public class HobbyController {
 
     private final HobbyService hobbyService;

@@ -1,5 +1,6 @@
 package com.dcm.job.service;
 
+import com.dcm.common.ServiceTest;
 import com.dcm.job.domain.Job;
 import com.dcm.job.domain.repository.JobRepository;
 import com.dcm.job.dto.JobRequest;
@@ -9,8 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
@@ -20,9 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class JobServiceTest {
+
+class JobServiceTest extends ServiceTest {
 
     @Mock
     private JobRepository jobRepository;

@@ -1,22 +1,18 @@
 package com.dcm.job.domain;
 
-import com.dcm.global.config.JpaAuditingConfiguration;
+import com.dcm.common.RepositoryTest;
 import com.dcm.job.domain.repository.JobRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
-@ActiveProfiles("test")
-@Import(JpaAuditingConfiguration.class)
-public class JobRepositoryTest {
+
+
+public class JobRepositoryTest extends RepositoryTest {
 
     @Autowired
     private JobRepository jobRepository;

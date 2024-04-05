@@ -1,12 +1,13 @@
 package com.dcm.hobby.dto;
 
+import com.dcm.global.enumurate.YN;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobbydetail.dto.HobbyDetailResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public record HobbyResponse(Long hobbyId, String hobbyName, String useYn, List<HobbyDetailResponse> hobbyDetails) {
+public record HobbyResponse(Long hobbyId, String hobbyName, YN useYn, List<HobbyDetailResponse> hobbyDetails) {
 
     public static HobbyResponse of(Hobby hobby) {
         List<HobbyDetailResponse> hobbyDetailResponses = hobby.getHobbyDetails().stream()

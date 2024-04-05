@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.N;
+import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,8 +24,8 @@ public class HobbyRepositoryTest extends RepositoryTest {
     void successReadHobby() {
         // given
         List<Hobby> hobbyList = List.of(
-                Hobby.of(1L, "운동/스포츠", "Y"),
-                Hobby.of(2L, "아웃도어여행", "Y")
+                Hobby.of(1L, "운동/스포츠", Y),
+                Hobby.of(2L, "아웃도어여행", Y)
         );
         hobbyRepository.saveAll(hobbyList);
 
@@ -39,7 +41,7 @@ public class HobbyRepositoryTest extends RepositoryTest {
     @Test
     void successWriteHobby() {
         // given
-        Hobby hobby = Hobby.of("운동/스포츠", "Y");
+        Hobby hobby = Hobby.of("운동/스포츠", Y);
 
         // when
         hobbyRepository.save(hobby);
@@ -53,25 +55,25 @@ public class HobbyRepositoryTest extends RepositoryTest {
     @Test
     void successUpdateHobby() {
         // given
-        Hobby updateHobby = Hobby.of(1L, "운동/스포츠", "N");
+        Hobby updateHobby = Hobby.of(1L, "운동/스포츠", N);
 
         // when
         Hobby newHobby = hobbyRepository.save(updateHobby);
 
         // then
-        assertEquals("N", newHobby.getUseYn());
+        assertEquals(N, newHobby.getUseYn());
     }
 
     @DisplayName("성공적으로 관심사 항목을 삭제한다.")
     @Test
     void successDeleteHobby() {
         // given
-        Long deleteHobbyId = 1L;
         List<Hobby> hobbyList = List.of(
-                Hobby.of("운동/스포츠", "Y"),
-                Hobby.of("아웃도어여행", "Y")
+                Hobby.of("운동/스포츠", Y),
+                Hobby.of("아웃도어여행", Y)
         );
         hobbyRepository.saveAll(hobbyList);
+        Long deleteHobbyId = hobbyList.get(0).getHobbyId();
 
         // when
         boolean exist = hobbyRepository.existsById(deleteHobbyId);

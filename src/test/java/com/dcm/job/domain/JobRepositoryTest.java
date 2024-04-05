@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -22,8 +23,8 @@ public class JobRepositoryTest extends RepositoryTest {
     void successReadJobs() {
         // given
         List<Job> jobs = List.of(
-                Job.of("JOB_THEME", "스타트업", "Y"),
-                Job.of("JOB_THEME", "강소기업", "Y")
+                Job.of("JOB_THEME", "스타트업", Y),
+                Job.of("JOB_THEME", "강소기업", Y)
         );
         jobRepository.saveAll(jobs);
 
@@ -40,8 +41,8 @@ public class JobRepositoryTest extends RepositoryTest {
     void successWriteJob() {
         // given
         List<Job> jobs = List.of(
-                Job.of("JOB_THEME", "스타트업", "Y"),
-                Job.of("JOB_THEME", "강소기업", "Y")
+                Job.of("JOB_THEME", "스타트업", Y),
+                Job.of("JOB_THEME", "강소기업", Y)
         );
         jobRepository.saveAll(jobs);
 
@@ -61,8 +62,8 @@ public class JobRepositoryTest extends RepositoryTest {
         // given
         Long jobId = 1L;
         List<Job> jobs = List.of(
-                Job.of("JOB_THEME", "스타트업", "Y"),
-                Job.of("JOB_THEME", "강소기업", "Y")
+                Job.of("JOB_THEME", "스타트업", Y),
+                Job.of("JOB_THEME", "강소기업", Y)
         );
         jobRepository.saveAll(jobs);
 

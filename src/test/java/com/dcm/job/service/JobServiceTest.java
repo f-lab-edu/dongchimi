@@ -13,6 +13,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,8 +34,8 @@ class JobServiceTest extends ServiceTest {
     void successReadJobs() {
         // given
         List<Job> mockJobs = List.of(
-                Job.of(1L, "JOB_THEME", "대기업", "Y"),
-                Job.of(2L, "JOB_THEME", "외국계", "Y"));
+                Job.of(1L, "JOB_THEME", "대기업", Y),
+                Job.of(2L, "JOB_THEME", "외국계", Y));
 
         // when
         when(jobRepository.findAll()).thenReturn(mockJobs);
@@ -49,11 +50,12 @@ class JobServiceTest extends ServiceTest {
     @Test
     void successWriteJob() {
         // given
-        JobRequest request = new JobRequest("JOB_THEME", "대기업", "Y");
+        JobRequest request = new JobRequest("JOB_THEME", "대기업", Y);
+        Job job = Job.of(1L, request.jobType(), request.jobName(), request.useYn());
+
 
         // when
-        doNothing().when(jobRepository).save(any(Job.class));
-
+        doReturn(job).when(jobRepository).save(any(Job.class));
         jobService.writeJobs(request);
 
         // then
@@ -88,7 +90,5 @@ class JobServiceTest extends ServiceTest {
         // then
         assertThrows(NotFoundJobException.class, () -> jobService.deleteJob(jobId));
     }
-
-
 
 }

@@ -1,6 +1,7 @@
 package com.dcm.job.controller;
 
 import com.dcm.common.ControllerTest;
+import com.dcm.global.enumurate.YN;
 import com.dcm.job.dto.JobRequest;
 import com.dcm.job.dto.JobResponse;
 import com.dcm.job.service.JobService;
@@ -18,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -69,7 +71,7 @@ class JobControllerTest extends ControllerTest {
     @Test
     void successWriteJob() throws Exception {
         // given
-        JobRequest request = new JobRequest("JOB_THEME", "대기업", "Y");
+        JobRequest request = new JobRequest("JOB_THEME", "대기업", Y);
 
         // when
         mockMvc.perform(post("/api/job")

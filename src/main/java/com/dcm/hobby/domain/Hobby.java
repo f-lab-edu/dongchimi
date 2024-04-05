@@ -1,6 +1,7 @@
 package com.dcm.hobby.domain;
 
 import com.dcm.global.domain.BaseEntity;
+import com.dcm.global.enumurate.YN;
 import com.dcm.hobbydetail.domain.HobbyDetail;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,19 +25,19 @@ public class Hobby extends BaseEntity {
     private String hobbyName;
 
     @Column(nullable = false)
-    private String useYn;
+    private YN useYn;
 
     @OneToMany(mappedBy = "hobby", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HobbyDetail> hobbyDetails = new ArrayList<>();
 
-    public static Hobby of(String hobbyName, String useYn) {
+    public static Hobby of(String hobbyName, YN useYn) {
         return Hobby.builder()
                 .hobbyName(hobbyName)
                 .useYn(useYn)
                 .build();
     }
 
-    public static Hobby of(Long hobbyId, String hobbyName, String useYn) {
+    public static Hobby of(Long hobbyId, String hobbyName, YN useYn) {
         return Hobby.builder()
                 .hobbyId(hobbyId)
                 .hobbyName(hobbyName)

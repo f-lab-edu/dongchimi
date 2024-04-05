@@ -15,6 +15,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,15 +34,15 @@ class HobbyServiceTest extends ServiceTest {
     @Test
     void successReadHobby() {
         // given
-        Hobby hobby1 = Hobby.of(1L, "운동/스포츠", "Y");
-        Hobby hobby2 = Hobby.of(1L, "아웃도어여행", "Y");
+        Hobby hobby1 = Hobby.of(1L, "운동/스포츠", Y);
+        Hobby hobby2 = Hobby.of(1L, "아웃도어여행", Y);
 
-        List<HobbyDetail> mockHobby1DetailList = List.of(HobbyDetail.of(1L, "자전거", "Y", hobby1));
-        List<HobbyDetail> mockHobby2DetailList = List.of(HobbyDetail.of(1L, "등산", "Y", hobby2));
+        List<HobbyDetail> mockHobby1DetailList = List.of(HobbyDetail.of(1L, "자전거", Y, hobby1));
+        List<HobbyDetail> mockHobby2DetailList = List.of(HobbyDetail.of(1L, "등산", Y, hobby2));
 
         List<Hobby> mockHobbyList = List.of(
-                new Hobby(1L, "운동/스포츠", "Y", mockHobby1DetailList),
-                new Hobby(1L, "아웃도어여행", "Y", mockHobby2DetailList)
+                new Hobby(1L, "운동/스포츠", Y, mockHobby1DetailList),
+                new Hobby(1L, "아웃도어여행", Y, mockHobby2DetailList)
         );
 
         // when
@@ -57,8 +58,8 @@ class HobbyServiceTest extends ServiceTest {
     @Test
     void successWriteHobby() {
         // given
-        HobbyRequest request = new HobbyRequest("운동/스포츠", "Y");
-        Hobby createHobby = Hobby.of(1L, "운동/스포츠", "Y");
+        HobbyRequest request = new HobbyRequest("운동/스포츠", Y);
+        Hobby createHobby = Hobby.of(1L, "운동/스포츠", Y);
 
         // when
         doReturn(createHobby).when(hobbyRepository).save(any(Hobby.class));
@@ -72,8 +73,8 @@ class HobbyServiceTest extends ServiceTest {
     @Test
     void successUpdateHobby() {
         // given
-        HobbyUpdateRequest request = new HobbyUpdateRequest(1L, "아웃도어여행", "Y");
-        Hobby updateHobby = Hobby.of(1L, "아웃도어여행", "Y");
+        HobbyUpdateRequest request = new HobbyUpdateRequest(1L, "아웃도어여행", Y);
+        Hobby updateHobby = Hobby.of(1L, "아웃도어여행", Y);
 
         // when
         doReturn(true).when(hobbyRepository).existsById(request.hobbyId());

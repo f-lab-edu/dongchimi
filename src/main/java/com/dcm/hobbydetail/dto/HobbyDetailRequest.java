@@ -1,4 +1,6 @@
 package com.dcm.hobbydetail.dto;
 
-public record HobbyDetailRequest(String hobbyDetailName, String useYn, Long hobbyId) {
+import com.dcm.global.enumurate.YN;
+
+public record HobbyDetailRequest(String hobbyDetailName, YN useYn, Long hobbyId) {
 }

@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.N;
+import static com.dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
@@ -45,10 +47,10 @@ class HobbyControllerTest extends ControllerTest {
     void successReadHobby() throws Exception {
         // given
         List<HobbyDetailResponse> hobbyDetailResponses = List.of(
-                new HobbyDetailResponse(1L, "자전거", "Y"),
-                new HobbyDetailResponse(2L, "배드민턴", "Y")
+                new HobbyDetailResponse(1L, "자전거", Y),
+                new HobbyDetailResponse(2L, "배드민턴", Y)
         );
-        List<HobbyResponse> hobbyResponses = List.of(new HobbyResponse(1L, "운동/스포츠", "Y", hobbyDetailResponses));
+        List<HobbyResponse> hobbyResponses = List.of(new HobbyResponse(1L, "운동/스포츠", Y, hobbyDetailResponses));
         given(hobbyService.readHobbyList()).willReturn(hobbyResponses);
 
         // when & then
@@ -73,7 +75,7 @@ class HobbyControllerTest extends ControllerTest {
     @Test
     void successWriteJob() throws Exception {
         // given
-        HobbyRequest request = new HobbyRequest("운동/스포츠", "Y");
+        HobbyRequest request = new HobbyRequest("운동/스포츠", Y);
 
         // when
         mockMvc.perform(post("/api/hobby")
@@ -91,7 +93,7 @@ class HobbyControllerTest extends ControllerTest {
     @Test
     void successUpdateHobby() throws Exception {
         // Given
-        HobbyUpdateRequest request = new HobbyUpdateRequest(1L, "자전거", "N");
+        HobbyUpdateRequest request = new HobbyUpdateRequest(1L, "자전거", N);
         doNothing().when(hobbyService).updateHobby(any(HobbyUpdateRequest.class));
 
         // When & Then
@@ -107,7 +109,7 @@ class HobbyControllerTest extends ControllerTest {
                                 fieldWithPath("hobbyName").type(JsonFieldType.STRING).description("취미 명"),
                                 fieldWithPath("useYn").type(JsonFieldType.STRING).description("취미 사용여부")
                         )))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
     }
 
     @DisplayName("성공적으로 취미 항목을 제거한다.")
@@ -119,7 +121,7 @@ class HobbyControllerTest extends ControllerTest {
         // when
         mockMvc.perform(delete("/api/hobby/{hobbyId}", hobbyId)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
 
         // then
         verify(hobbyService).deleteHobby(hobbyId);

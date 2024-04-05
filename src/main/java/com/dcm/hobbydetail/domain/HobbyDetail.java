@@ -1,8 +1,7 @@
-package com.dcm.hobby_detail.domain;
+package com.dcm.hobbydetail.domain;
 
 import com.dcm.global.domain.BaseEntity;
 import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby_detail.dto.HobbyDetailRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

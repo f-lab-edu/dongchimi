@@ -1,9 +1,9 @@
-package com.dcm.hobby_detail.controller;
+package com.dcm.hobbydetail.controller;
 
-import com.dcm.hobby_detail.dto.HobbyDetailRequest;
-import com.dcm.hobby_detail.dto.HobbyDetailResponse;
-import com.dcm.hobby_detail.dto.HobbyDetailUpdateRequest;
-import com.dcm.hobby_detail.service.HobbyDetailService;
+import com.dcm.hobbydetail.dto.HobbyDetailRequest;
+import com.dcm.hobbydetail.dto.HobbyDetailResponse;
+import com.dcm.hobbydetail.dto.HobbyDetailUpdateRequest;
+import com.dcm.hobbydetail.service.HobbyDetailService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,15 +32,13 @@ public class HobbyDetailController {
     }
 
     @PatchMapping
-    public ResponseEntity<Void> updateHobbyDetail(@RequestBody HobbyDetailUpdateRequest request) {
+    public void updateHobbyDetail(@RequestBody HobbyDetailUpdateRequest request) {
         hobbyDetailService.updateHobbyDetail(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/{hobbyDetailId}")
-    public ResponseEntity<Void> deleteHobbyDetail(@PathVariable Long hobbyDetailId) {
+    public void deleteHobbyDetail(@PathVariable Long hobbyDetailId) {
         hobbyDetailService.deleteHobbyDetail(hobbyDetailId);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 

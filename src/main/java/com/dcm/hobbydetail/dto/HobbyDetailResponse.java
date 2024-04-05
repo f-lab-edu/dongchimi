@@ -1,6 +1,6 @@
-package com.dcm.hobby_detail.dto;
+package com.dcm.hobbydetail.dto;
 
-import com.dcm.hobby_detail.domain.HobbyDetail;
+import com.dcm.hobbydetail.domain.HobbyDetail;
 
 import java.util.List;
 import java.util.stream.Collectors;

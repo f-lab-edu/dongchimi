@@ -34,13 +34,13 @@ public class HobbyController {
     @PatchMapping
     public ResponseEntity<Void> updateHobby(@RequestBody HobbyUpdateRequest request) {
         hobbyService.updateHobby(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{hobbyId}")
     public ResponseEntity<Void> deleteHobby(@PathVariable Long hobbyId) {
         hobbyService.deleteHobby(hobbyId);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.ok().build();
     }
 
 }

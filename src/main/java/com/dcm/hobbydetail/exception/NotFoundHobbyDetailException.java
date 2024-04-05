@@ -1,4 +1,4 @@
-package com.dcm.hobby_detail.exception;
+package com.dcm.hobbydetail.exception;
 
 public class NotFoundHobbyDetailException extends RuntimeException {
 

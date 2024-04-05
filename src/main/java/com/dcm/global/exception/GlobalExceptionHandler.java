@@ -1,7 +1,7 @@
 package com.dcm.global.exception;
 
 import com.dcm.hobby.exception.NotFoundHobbyException;
-import com.dcm.hobby_detail.exception.NotFoundHobbyDetailException;
+import com.dcm.hobbydetail.exception.NotFoundHobbyDetailException;
 import com.dcm.job.exception.NotFoundJobException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

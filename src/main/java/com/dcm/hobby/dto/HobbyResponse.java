@@ -1,7 +1,7 @@
 package com.dcm.hobby.dto;
 
 import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby_detail.dto.HobbyDetailResponse;
+import com.dcm.hobbydetail.dto.HobbyDetailResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -6,4 +6,5 @@ import org.springframework.test.context.ActiveProfiles;
 @AutoConfigureRestDocs
 @ActiveProfiles("test")
 public class ControllerTest {
+
 }

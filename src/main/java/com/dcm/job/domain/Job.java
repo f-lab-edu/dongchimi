@@ -1,6 +1,7 @@
 package com.dcm.job.domain;
 
 import com.dcm.global.domain.BaseEntity;
+import com.dcm.global.enumurate.YN;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,15 +23,15 @@ public class Job extends BaseEntity {
     private String jobName;
 
     @Column(nullable = false)
-    private String useYn;
+    private YN useYn;
 
     protected Job() {}
 
-    public static Job of(String jobType, String jobName, String useYn) {
+    public static Job of(String jobType, String jobName, YN useYn) {
         return of(null, jobType, jobName, useYn);
     }
 
-    public static Job of(Long jobId, String jobType, String jobName, String useYn) {
+    public static Job of(Long jobId, String jobType, String jobName, YN useYn) {
         return new Job(jobId, jobType, jobName, useYn);
     }
 

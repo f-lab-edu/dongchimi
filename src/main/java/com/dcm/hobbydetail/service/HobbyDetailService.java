@@ -1,14 +1,14 @@
-package com.dcm.hobby_detail.service;
+package com.dcm.hobbydetail.service;
 
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import com.dcm.hobby.exception.NotFoundHobbyException;
-import com.dcm.hobby_detail.domain.HobbyDetail;
-import com.dcm.hobby_detail.domain.repository.HobbyDetailRepository;
-import com.dcm.hobby_detail.dto.HobbyDetailRequest;
-import com.dcm.hobby_detail.dto.HobbyDetailResponse;
-import com.dcm.hobby_detail.dto.HobbyDetailUpdateRequest;
-import com.dcm.hobby_detail.exception.NotFoundHobbyDetailException;
+import com.dcm.hobbydetail.domain.HobbyDetail;
+import com.dcm.hobbydetail.domain.repository.HobbyDetailRepository;
+import com.dcm.hobbydetail.dto.HobbyDetailRequest;
+import com.dcm.hobbydetail.dto.HobbyDetailResponse;
+import com.dcm.hobbydetail.dto.HobbyDetailUpdateRequest;
+import com.dcm.hobbydetail.exception.NotFoundHobbyDetailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

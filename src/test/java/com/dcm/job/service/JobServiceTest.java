@@ -1,5 +1,6 @@
 package com.dcm.job.service;
 
+import com.dcm.common.ServiceTest;
 import com.dcm.job.domain.Job;
 import com.dcm.job.domain.repository.JobRepository;
 import com.dcm.job.dto.JobRequest;
@@ -9,20 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class JobServiceTest {
+
+class JobServiceTest extends ServiceTest {
 
     @Mock
     private JobRepository jobRepository;
@@ -35,8 +34,8 @@ class JobServiceTest {
     void successReadJobs() {
         // given
         List<Job> mockJobs = List.of(
-                Job.of(1L, "JOB_THEME", "대기업", "Y"),
-                Job.of(2L, "JOB_THEME", "외국계", "Y"));
+                Job.of(1L, "JOB_THEME", "대기업", Y),
+                Job.of(2L, "JOB_THEME", "외국계", Y));
 
         // when
         when(jobRepository.findAll()).thenReturn(mockJobs);
@@ -51,11 +50,12 @@ class JobServiceTest {
     @Test
     void successWriteJob() {
         // given
-        JobRequest request = new JobRequest("JOB_THEME", "대기업", "Y");
+        JobRequest request = new JobRequest("JOB_THEME", "대기업", Y);
+        Job job = Job.of(1L, request.jobType(), request.jobName(), request.useYn());
+
 
         // when
-        doNothing().when(jobRepository).save(any(Job.class));
-
+        doReturn(job).when(jobRepository).save(any(Job.class));
         jobService.writeJobs(request);
 
         // then
@@ -90,7 +90,5 @@ class JobServiceTest {
         // then
         assertThrows(NotFoundJobException.class, () -> jobService.deleteJob(jobId));
     }
-
-
 
 }

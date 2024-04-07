@@ -1,5 +1,7 @@
 package com.dcm.job.controller;
 
+import com.dcm.common.ControllerTest;
+import com.dcm.global.enumurate.YN;
 import com.dcm.job.dto.JobRequest;
 import com.dcm.job.dto.JobResponse;
 import com.dcm.job.service.JobService;
@@ -7,18 +9,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -32,10 +33,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureRestDocs
 @WebMvcTest(JobController.class)
-@ActiveProfiles("test")
-class JobControllerTest {
+class JobControllerTest extends ControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -72,13 +71,13 @@ class JobControllerTest {
     @Test
     void successWriteJob() throws Exception {
         // given
-        JobRequest request = new JobRequest("JOB_THEME", "대기업", "Y");
+        JobRequest request = new JobRequest("JOB_THEME", "대기업", Y);
 
         // when
         mockMvc.perform(post("/api/job")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(request)))
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -94,7 +93,7 @@ class JobControllerTest {
 
         // when
         mockMvc.perform(delete("/api/job/{jobId}", jobId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         // then

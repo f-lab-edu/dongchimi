@@ -1,8 +1,8 @@
-package com.dcm.hobby_detail.domain;
+package com.dcm.hobbydetail.domain;
 
 import com.dcm.global.domain.BaseEntity;
+import com.dcm.global.enumurate.YN;
 import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby_detail.dto.HobbyDetailRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,13 +22,13 @@ public class HobbyDetail extends BaseEntity {
     private String hobbyDetailName;
 
     @Column(nullable = false)
-    private String useYn;
+    private YN useYn;
 
     @ManyToOne
     @JoinColumn(name = "hobbyId")
     private Hobby hobby;
 
-    public static HobbyDetail of(String hobbyDetailName, String useYn, Hobby hobby) {
+    public static HobbyDetail of(String hobbyDetailName, YN useYn, Hobby hobby) {
         return HobbyDetail.builder()
                 .hobbyDetailName(hobbyDetailName)
                 .useYn(useYn)
@@ -36,7 +36,7 @@ public class HobbyDetail extends BaseEntity {
                 .build();
     }
 
-    public static HobbyDetail of(Long hobbyDetailId, String hobbyDetailName, String useYn, Hobby hobby) {
+    public static HobbyDetail of(Long hobbyDetailId, String hobbyDetailName, YN useYn, Hobby hobby) {
         return HobbyDetail.builder()
                 .hobbyDetailId(hobbyDetailId)
                 .hobbyDetailName(hobbyDetailName)

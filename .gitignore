@@ -38,3 +38,4 @@ out/
 
 
 /src/main/resources/application-oauth2.yml
+/dongchimi-api/src/main/resources/application-oauth2.yml

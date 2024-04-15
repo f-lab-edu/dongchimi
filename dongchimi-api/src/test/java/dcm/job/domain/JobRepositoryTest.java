@@ -1,14 +1,14 @@
 package dcm.job.domain;
 
 import dcm.common.RepositoryTest;
-import com.dcm.job.domain.repository.JobRepository;
+import dcm.job.domain.repository.JobRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

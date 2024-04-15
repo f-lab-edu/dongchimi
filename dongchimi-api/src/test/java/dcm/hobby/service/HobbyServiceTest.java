@@ -1,13 +1,13 @@
 package dcm.hobby.service;
 
 import dcm.common.ServiceTest;
-import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby.domain.repository.HobbyRepository;
-import com.dcm.hobby.dto.HobbyRequest;
-import com.dcm.hobby.dto.HobbyResponse;
-import com.dcm.hobby.dto.HobbyUpdateRequest;
-import com.dcm.hobby.exception.NotFoundHobbyException;
-import com.dcm.hobbydetail.domain.HobbyDetail;
+import dcm.hobby.domain.Hobby;
+import dcm.hobby.domain.repository.HobbyRepository;
+import dcm.hobby.dto.HobbyRequest;
+import dcm.hobby.dto.HobbyResponse;
+import dcm.hobby.dto.HobbyUpdateRequest;
+import dcm.hobby.exception.NotFoundHobbyException;
+import dcm.hobbydetail.domain.HobbyDetail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,7 +15,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

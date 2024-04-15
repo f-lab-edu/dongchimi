@@ -1,14 +1,13 @@
 package dcm.party.service;
 
-import com.dcm.chat.domain.Chat;
-import com.dcm.chat.domain.repository.ChatRepository;
+import dcm.chat.domain.Chat;
+import dcm.chat.domain.repository.ChatRepository;
 import dcm.common.ServiceTest;
-import com.dcm.global.enumurate.YN;
-import com.dcm.party.domain.Party;
-import com.dcm.party.domain.repository.PartyRepository;
-import com.dcm.party.dto.PartyRequest;
-import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby.domain.repository.HobbyRepository;
+import dcm.hobby.domain.Hobby;
+import dcm.hobby.domain.repository.HobbyRepository;
+import dcm.party.domain.Party;
+import dcm.party.domain.repository.PartyRepository;
+import dcm.party.dto.PartyRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +15,8 @@ import org.mockito.Mock;
 
 import java.util.Optional;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.N;
+import static dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -46,7 +46,7 @@ class PartyServiceTest extends ServiceTest {
 
         PartyRequest partyRequest = new PartyRequest("scnoh@test.com", "강서풋살", 100, "37.402105,-122.081974",
                 "서울시 강서구", "풋살모임입니다.", 1L);
-        Chat chat = new Chat(1L, YN.N, party);
+        Chat chat = new Chat(1L, N, party);
 
         // when
         doReturn(hobby).when(hobbyRepository).findById(any(Long.class));

@@ -1,11 +1,11 @@
 package dcm.job.service;
 
 import dcm.common.ServiceTest;
-import com.dcm.job.domain.Job;
-import com.dcm.job.domain.repository.JobRepository;
-import com.dcm.job.dto.JobRequest;
-import com.dcm.job.dto.JobResponse;
-import com.dcm.job.exception.NotFoundJobException;
+import dcm.job.domain.Job;
+import dcm.job.domain.repository.JobRepository;
+import dcm.job.dto.JobRequest;
+import dcm.job.dto.JobResponse;
+import dcm.job.exception.NotFoundJobException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,7 +13,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,16 +1,16 @@
 package dcm.hobby.repository;
 
 import dcm.common.RepositoryTest;
-import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby.domain.repository.HobbyRepository;
+import dcm.hobby.domain.Hobby;
+import dcm.hobby.domain.repository.HobbyRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.N;
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.N;
+import static dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,12 +1,12 @@
 package dcm.hobby.controller;
 
-import dcm.common.ControllerTest;
-import com.dcm.hobby.dto.HobbyRequest;
-import com.dcm.hobby.dto.HobbyResponse;
-import com.dcm.hobby.dto.HobbyUpdateRequest;
-import com.dcm.hobby.service.HobbyService;
-import com.dcm.hobbydetail.dto.HobbyDetailResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dcm.common.ControllerTest;
+import dcm.hobby.dto.HobbyRequest;
+import dcm.hobby.dto.HobbyResponse;
+import dcm.hobby.dto.HobbyUpdateRequest;
+import dcm.hobby.service.HobbyService;
+import dcm.hobbydetail.dto.HobbyDetailResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.N;
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.N;
+import static dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;

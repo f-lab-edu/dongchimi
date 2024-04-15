@@ -1,20 +1,20 @@
 package dcm.party.repository;
 
-import com.dcm.chat.domain.Chat;
-import com.dcm.chat.domain.repository.ChatRepository;
+import dcm.chat.domain.Chat;
+import dcm.chat.domain.repository.ChatRepository;
 import dcm.common.RepositoryTest;
-import com.dcm.party.domain.Party;
-import com.dcm.party.domain.repository.PartyRepository;
-import com.dcm.party.dto.PartyRequest;
-import com.dcm.hobby.domain.Hobby;
-import com.dcm.hobby.domain.repository.HobbyRepository;
+import dcm.hobby.domain.Hobby;
+import dcm.hobby.domain.repository.HobbyRepository;
+import dcm.party.domain.Party;
+import dcm.party.domain.repository.PartyRepository;
+import dcm.party.dto.PartyRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.Y;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 public class PartyRepositoryTest extends RepositoryTest {

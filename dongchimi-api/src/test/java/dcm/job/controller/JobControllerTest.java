@@ -1,11 +1,10 @@
 package dcm.job.controller;
 
-import dcm.common.ControllerTest;
-import com.dcm.global.enumurate.YN;
-import com.dcm.job.dto.JobRequest;
-import com.dcm.job.dto.JobResponse;
-import com.dcm.job.service.JobService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dcm.common.ControllerTest;
+import dcm.job.dto.JobRequest;
+import dcm.job.dto.JobResponse;
+import dcm.job.service.JobService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.dcm.global.enumurate.YN.Y;
+import static dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;

@@ -1,8 +1,8 @@
 package dcm.auth;
 
-import com.dcm.auth.controller.AuthController;
-import com.dcm.auth.dto.TokenResponse;
-import com.dcm.auth.service.AuthService;
+import dcm.auth.controller.AuthController;
+import dcm.auth.dto.TokenResponse;
+import dcm.auth.service.AuthService;
 import dcm.common.ControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

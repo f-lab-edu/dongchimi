@@ -38,10 +38,8 @@ public class PartyService {
     }
 
     private Hobby readHobby(Long hobbyId) {
-        Optional<Hobby> hobby = hobbyRepository.findById(hobbyId);
-        if (hobby.isPresent())
-            return hobby.get();
-        throw new NotFoundHobbyException(hobbyId);
+        return hobbyRepository.findById(hobbyId)
+                .orElseThrow(() -> new NotFoundHobbyException(hobbyId));
     }
 
 }

@@ -14,8 +14,7 @@ public class ChatMessage extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long messageId;
 
-    @Column(nullable = false)
-    private Long groupId;
+    private long groupId;
 
     @Column(nullable = false)
     private String email;

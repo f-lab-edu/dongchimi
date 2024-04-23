@@ -24,24 +24,22 @@ public class PartyService {
     private final ChatRepository chatRepository;
 
     @Transactional
-    public void writeParty(PartyRequest request) {
+    public void createParty(PartyRequest request) {
         Hobby hobby = readHobby(request.hobbyId());
         Party party = Party.toEntity(request, hobby);
 
         partyRepository.save(party);
-        writeChat(party);
+        createChat(party);
     }
 
-    private void writeChat(Party party) {
+    private void createChat(Party party) {
         Chat chat = new Chat(party);
         chatRepository.save(chat);
     }
 
     private Hobby readHobby(Long hobbyId) {
-        Optional<Hobby> hobby = hobbyRepository.findById(hobbyId);
-        if (hobby.isPresent())
-            return hobby.get();
-        throw new NotFoundHobbyException(hobbyId);
+        return hobbyRepository.findById(hobbyId)
+                .orElseThrow(() -> new NotFoundHobbyException(hobbyId));
     }
 
 }

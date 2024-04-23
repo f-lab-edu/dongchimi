@@ -19,8 +19,8 @@ public class PartyController {
     private final PartyService partyService;
 
     @PostMapping
-    public ResponseEntity<Void> writeParty(@RequestBody @Valid PartyRequest request) {
-        partyService.writeParty(request);
+    public ResponseEntity<Void> createParty(@RequestBody @Valid PartyRequest request) {
+        partyService.createParty(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -1,3 +1,9 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.3'
@@ -5,73 +11,76 @@ plugins {
     id 'org.asciidoctor.jvm.convert' version '4.0.2'
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
+subprojects {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
 
-java {
+    group = 'com'
+    version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '21'
-}
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    repositories {
+        mavenCentral()
     }
-    asciidoctorExt
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        asciidoctorExt
+    }
+
+    ext {
+        snippetsDir = file('build/generated-snippets')
+    }
+
+    asciidoctor {
+        configurations 'asciidoctorExt'
+        baseDirFollowsSourceFile()
+        inputs.dir snippetsDir
+        dependsOn test
+    }
+
+    asciidoctor.doFirst {
+        delete file('src/main/resources/static/docs')
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+        compileOnly "org.projectlombok:lombok"
+        annotationProcessor "org.projectlombok:lombok"
+        testCompileOnly "org.projectlombok:lombok"
+        testAnnotationProcessor "org.projectlombok:lombok"
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+        outputs.dir snippetsDir
+    }
+
+    task copyDocument(type: Copy) {
+        dependsOn asciidoctor
+        from file("build/docs/asciidoc")
+        into file("src/main/resources/static/docs")
+    }
+
+    tasks.named('compileJava') {
+        inputs.files(tasks.named('processResources'))
+    }
+
+    build {
+        dependsOn copyDocument
+    }
 }
 
-ext {
-    snippetsDir = file('build/generated-snippets')
-}
-
-repositories {
-    mavenCentral()
-}
-
-asciidoctor {
-    configurations 'asciidoctorExt'
-    baseDirFollowsSourceFile()
-    inputs.dir snippetsDir
-    dependsOn test
-}
-
-asciidoctor.doFirst {
-    delete file('src/main/resources/static/docs')
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java:8.0.28'
-
-    annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-    outputs.dir snippetsDir
-}
-
-task copyDocument(type: Copy) {
-    dependsOn asciidoctor
-    from file("build/docs/asciidoc")
-    into file("src/main/resources/static/docs")
-}
-
-tasks.named('compileJava') {
-    inputs.files(tasks.named('processResources'))
-}
-
-build {
-    dependsOn copyDocument
-}

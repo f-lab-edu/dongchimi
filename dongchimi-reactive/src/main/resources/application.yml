@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+session:
+  manager:
+    reactive: true
+
+logging:
+  level:
+    dcm: debug

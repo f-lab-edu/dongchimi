@@ -10,7 +10,8 @@
 
 
 ## 아키텍처 구성도
-![구성도](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/e710e3f1-4323-49ed-8c10-1062ce8ecdab)
+![20240427_구성도](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/4039dffc-c8ea-4526-9ca4-e86d624ad245)
+
 
 
 

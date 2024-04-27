@@ -1,6 +1,6 @@
 package dcm.global.config;
 
-import dcm.chat.handler.ChatWebSocketHandler;
+import dcm.chat.handler.ReactiveWebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.HandlerMapping;
@@ -16,9 +16,9 @@ public class WebConfig {
 
 
     @Bean
-    public HandlerMapping handlerMapping() {
+    public HandlerMapping handlerMapping(ReactiveWebSocketHandler reactiveWebSocketHandler) {
         Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put("/ws", new ChatWebSocketHandler());
+        map.put("/ws", reactiveWebSocketHandler);
         int order = -1;
         return new SimpleUrlHandlerMapping(map, order);
     }

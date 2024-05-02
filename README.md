@@ -25,6 +25,8 @@
 ![20240427_구성도](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/4039dffc-c8ea-4526-9ca4-e86d624ad245)
 
 
+## 백엔드 기술
+![image](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/d0f1505d-b796-4ba4-aba0-86bd12ab658f)
 
 
 

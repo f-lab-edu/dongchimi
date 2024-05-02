@@ -26,7 +26,8 @@
 
 
 ## 백엔드 기술
-![image](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/d0f1505d-b796-4ba4-aba0-86bd12ab658f)
+![백엔드2](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/ebe18f8f-9643-46e1-96b0-4b321df5538c)
+
 
 
 

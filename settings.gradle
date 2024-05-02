@@ -1,4 +1,4 @@
 rootProject.name = 'dongchimi-server'
 include 'dongchimi-api'
 include 'dongchimi-reactive'
-
+include 'dongchimi-consumer'

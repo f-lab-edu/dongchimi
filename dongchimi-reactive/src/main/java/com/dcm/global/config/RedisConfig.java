@@ -1,5 +1,6 @@
 package com.dcm.global.config;
 
+import com.dcm.global.constant.MessageConstant;
 import com.dcm.message.consumer.RedisConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class RedisConfig {
                                                         RedisConsumer consumer) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(listenerAdapter(consumer), new PatternTopic("/sub/room-*"));
+        container.addMessageListener(listenerAdapter(consumer), new PatternTopic(MessageConstant.SUBSCRIBE_PREFIX + "*"));
         return container;
     }
 

@@ -1,7 +1,9 @@
 package com.dcm.message.publisher;
 
+import com.dcm.message.dto.MessageRequest;
+
 public interface MessagePublisher {
 
-    void publish(String topic, String message);
+    void publish(MessageRequest request);
 
 }

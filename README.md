@@ -21,8 +21,15 @@
 - Message를 구독하는 Consumer들을 구현하는 모듈입니다.
 - Redis, Kafaka 등 외부에서 전달 받은 Message를 활용
 
+### Party domain 모듈
+- 모임 관련 도메인을 관리
+![image](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/d93ea816-9f26-4537-a792-275492ced1c8)
+
+
+
 ## 아키텍처 구성도
-![20240427_구성도](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/4039dffc-c8ea-4526-9ca4-e86d624ad245)
+![20240511_구성도](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/7f700826-d2e6-4504-8c6a-e0ac2f6f7e5e)
+
 
 
 ## 기술 소개

@@ -1,8 +1,9 @@
 package com.dcm.party.service;
 
+import com.dcm.common.ServiceTest;
 import com.dcm.chat.domain.Chat;
 import com.dcm.chat.domain.repository.ChatRepository;
-import com.dcm.common.ServiceTest;
+import com.dcm.fixtures.PartyFixtures;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import com.dcm.party.domain.Party;
@@ -15,8 +16,6 @@ import org.mockito.Mock;
 
 import java.util.Optional;
 
-import static com.dcm.global.enumurate.YN.N;
-import static com.dcm.global.enumurate.YN.Y;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -40,13 +39,10 @@ class PartyServiceTest extends ServiceTest {
     @Test
     void successPartyAndChat() {
         // given
-        Optional<Hobby> hobby = Optional.ofNullable(Hobby.of(1L, "운동/스포츠", Y));
-        Party party = new Party(1L, "scnoh@test.com", "강서풋살", 100, "37.402105,-122.081974",
-                "서울시 강서구", "풋살모임입니다.", 0L, hobby.get());
-
-        PartyRequest partyRequest = new PartyRequest("scnoh@test.com", "강서풋살", 100, "37.402105,-122.081974",
-                "서울시 강서구", "풋살모임입니다.", 1L);
-        Chat chat = new Chat(1L, N, party);
+        Optional<Hobby> hobby = Optional.ofNullable(PartyFixtures.CREATE_HOBBY());
+        PartyRequest partyRequest = PartyFixtures.CREATE_PARTY_REQUEST();
+        Party party = PartyFixtures.CREATE_PARTY();
+        Chat chat = PartyFixtures.CREATE_CHAT();
 
         // when
         doReturn(hobby).when(hobbyRepository).findById(any(Long.class));

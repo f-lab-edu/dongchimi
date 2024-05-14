@@ -1,4 +1,4 @@
 package com.dcm.message.dto;
 
-public record MessageRequest(String partyId, String message) {
+public record MessageRequest(Long chatId, String email, String message) {
 }

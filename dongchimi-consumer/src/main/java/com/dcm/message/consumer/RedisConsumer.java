@@ -1,5 +1,7 @@
 package com.dcm.message.consumer;
 
+import com.dcm.message.dto.MessageRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.Message;
@@ -13,15 +15,17 @@ import org.springframework.stereotype.Service;
 public class RedisConsumer implements MessageListener {
 
     private final RedisTemplate<String, String> redisTemplate;
+    private final ObjectMapper objectMapper;
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
         try {
             String pubMessage = redisTemplate.getStringSerializer().deserialize(message.getBody());
-            log.info("Redis Subscribe Message: {}", pubMessage);
+            MessageRequest messageRequest = objectMapper.readValue(pubMessage, MessageRequest.class);
 
+            // TODO message 정보 저장
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e.getMessage(), e);
         }
     }
 

@@ -14,7 +14,7 @@ public class MessageController {
 
     @MessageMapping("/chat/message")
     public void message(MessageRequest request) {
-        redisPublisher.publish(request.partyId(), request.message());
+        redisPublisher.publish(request);
     }
 
 }

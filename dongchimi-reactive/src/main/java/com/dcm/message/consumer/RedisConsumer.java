@@ -1,6 +1,6 @@
 package com.dcm.message.consumer;
 
-import com.dcm.global.constant.MessageConstant;
+import com.dcm.global.config.RedisConfig;
 import com.dcm.message.dto.MessageRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class RedisConsumer implements MessageListener {
             MessageRequest messageRequest = objectMapper.readValue(pubMessage, MessageRequest.class);
 
             // TODO Client 구독자에게 Message 수신
-            messageSendingOperations.convertAndSend(MessageConstant.SUBSCRIBE_PREFIX + messageRequest.chatId(), messageRequest.message());
+            messageSendingOperations.convertAndSend(RedisConfig.SUBSCRIBE_PREFIX + messageRequest.chatId(), messageRequest.message());
         } catch (Exception e) {
             // TODO Exception Handler 통해 예외 처리
             log.warn(e.getMessage(), e);

@@ -1,6 +1,6 @@
 package com.dcm.hobby.repository;
 
-import com.dcm.common.RepositoryTest;
+import com.dcm.global.annotation.RepositoryTest;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,8 @@ import static com.dcm.global.enumurate.YN.Y;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HobbyRepositoryTest extends RepositoryTest {
+@RepositoryTest
+public class HobbyRepositoryTest {
 
     @Autowired
     private HobbyRepository hobbyRepository;

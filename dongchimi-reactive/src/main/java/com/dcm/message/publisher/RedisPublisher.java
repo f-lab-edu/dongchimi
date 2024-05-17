@@ -1,6 +1,6 @@
 package com.dcm.message.publisher;
 
-import com.dcm.global.constant.MessageConstant;
+import com.dcm.global.config.RedisConfig;
 import com.dcm.message.dto.MessageRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +21,7 @@ public class RedisPublisher implements MessagePublisher {
     public void publish(MessageRequest request) {
         try {
             String message = objectMapper.writeValueAsString(request);
-            redisTemplate.convertAndSend(MessageConstant.SUBSCRIBE_PREFIX + request.chatId(), message);
+            redisTemplate.convertAndSend(RedisConfig.SUBSCRIBE_PREFIX + request.chatId(), message);
         } catch (JsonProcessingException e) {
             // TODO Exception Handler 통해 예외 처리
             log.warn(e.getMessage(), e);

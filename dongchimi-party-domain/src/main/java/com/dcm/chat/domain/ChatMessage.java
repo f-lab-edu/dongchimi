@@ -12,10 +12,7 @@ public class ChatMessage extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long messageId;
-
-    @Column(nullable = false)
-    private Long partyId;
+    private Long chatMessageId;
 
     @Column(nullable = false)
     private String email;
@@ -23,8 +20,14 @@ public class ChatMessage extends BaseEntity {
     @Column(nullable = false, length = 200)
     private String message;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chatId")
     private Chat chat;
+
+    public ChatMessage(String email, String message, Chat chat) {
+        this.email = email;
+        this.message = message;
+        this.chat = chat;
+    }
 
 }

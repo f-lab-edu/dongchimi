@@ -48,3 +48,5 @@ insert into hobby_detail (hobby_id, hobby_detail_name, use_yn, create_date, upda
 insert into hobby_detail (hobby_id, hobby_detail_name, use_yn, create_date, update_date) values (1, '족구', 0, '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 insert into hobby_detail (hobby_id, hobby_detail_name, use_yn, create_date, update_date) values (1, '사격/양궁', 0, '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
 
+insert into party (party_id, manager_id, party_name, capacity, meet_address, meet_address_name, description, vote, hobby_id, create_date, update_date) values (1, 'test@test.com', '강서풋살', 100, '37.402105,-122.081974', '서울시 강서구', '풋살모임입니다', 0, 1, '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')
+insert into chat (chat_id, freeze_yn, party_id, create_date, update_date) values (1, 1, 1, '2024-03-01 10:00:00.000', '2024-03-01 10:00:00.000')

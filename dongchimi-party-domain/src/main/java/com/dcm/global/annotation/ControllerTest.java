@@ -12,5 +12,4 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @AutoConfigureRestDocs
 @ActiveProfiles("test")
-public @interface ControllerTest {
-}
+public @interface ControllerTest {}

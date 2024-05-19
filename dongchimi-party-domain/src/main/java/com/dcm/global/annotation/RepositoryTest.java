@@ -15,5 +15,4 @@ import java.lang.annotation.Target;
 @DataJpaTest
 @ActiveProfiles("test")
 @Import(JpaAuditingConfiguration.class)
-public @interface RepositoryTest {
-}
+public @interface RepositoryTest {}

@@ -1,9 +1,9 @@
 package com.dcm.party.repository;
 
-import com.dcm.common.RepositoryTest;
 import com.dcm.chat.domain.Chat;
 import com.dcm.chat.domain.repository.ChatRepository;
 import com.dcm.fixtures.PartyFixtures;
+import com.dcm.global.annotation.RepositoryTest;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import com.dcm.party.domain.Party;
@@ -16,7 +16,8 @@ import java.util.Optional;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-public class PartyRepositoryTest extends RepositoryTest {
+@RepositoryTest
+public class PartyRepositoryTest {
 
     @Autowired
     private PartyRepository partyRepository;

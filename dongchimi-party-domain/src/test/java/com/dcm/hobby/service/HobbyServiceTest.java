@@ -1,6 +1,6 @@
 package com.dcm.hobby.service;
 
-import com.dcm.common.ServiceTest;
+import com.dcm.global.annotation.ServiceTest;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import com.dcm.hobby.dto.HobbyRequest;
@@ -22,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class HobbyServiceTest extends ServiceTest {
+@ServiceTest
+class HobbyServiceTest {
 
     @Mock
     private HobbyRepository hobbyRepository;

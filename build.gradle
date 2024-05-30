@@ -15,9 +15,10 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java'
+    apply plugin: 'org.asciidoctor.jvm.convert'
 
     group = 'com.dcm'
-    version = '0.0.1-SNAPSHOT'
+    version = '1.0'
     sourceCompatibility = '21'
 
     repositories {
@@ -85,3 +86,6 @@ subprojects {
     }
 }
 
+task buildAll {
+    dependsOn subprojects*.build
+}

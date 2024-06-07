@@ -1,9 +1,9 @@
 package com.dcm.party.service;
 
-import com.dcm.common.ServiceTest;
 import com.dcm.chat.domain.Chat;
 import com.dcm.chat.domain.repository.ChatRepository;
 import com.dcm.fixtures.PartyFixtures;
+import com.dcm.global.annotation.ServiceTest;
 import com.dcm.hobby.domain.Hobby;
 import com.dcm.hobby.domain.repository.HobbyRepository;
 import com.dcm.party.domain.Party;
@@ -20,7 +20,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
-class PartyServiceTest extends ServiceTest {
+@ServiceTest
+class PartyServiceTest {
 
     @Mock
     private HobbyRepository hobbyRepository;

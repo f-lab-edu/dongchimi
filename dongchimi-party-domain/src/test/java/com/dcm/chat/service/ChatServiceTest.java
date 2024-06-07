@@ -4,8 +4,8 @@ import com.dcm.chat.domain.Chat;
 import com.dcm.chat.domain.ChatMessage;
 import com.dcm.chat.domain.repository.ChatMessageRepository;
 import com.dcm.chat.domain.repository.ChatRepository;
-import com.dcm.common.ServiceTest;
 import com.dcm.fixtures.PartyFixtures;
+import com.dcm.global.annotation.ServiceTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +16,8 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class ChatServiceTest extends ServiceTest {
+@ServiceTest
+public class ChatServiceTest {
 
     @Mock
     private ChatRepository chatRepository;

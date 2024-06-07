@@ -1,4 +1,4 @@
-package com.dcm.chat.controller;
+package com.dcm.controller;
 
 import com.dcm.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;

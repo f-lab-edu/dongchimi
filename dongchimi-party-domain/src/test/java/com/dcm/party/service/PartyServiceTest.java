@@ -49,7 +49,7 @@ class PartyServiceTest {
         doReturn(hobby).when(hobbyRepository).findById(any(Long.class));
         doReturn(party).when(partyRepository).save(any(Party.class));
         doReturn(chat).when(chatRepository).save(any(Chat.class));
-        partyService.writeParty(partyRequest);
+        partyService.createParty(partyRequest);
 
         // then
         verify(hobbyRepository).findById(1L);

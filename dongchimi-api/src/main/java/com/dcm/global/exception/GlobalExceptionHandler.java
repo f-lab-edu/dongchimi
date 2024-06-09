@@ -3,6 +3,8 @@ package com.dcm.global.exception;
 import com.dcm.hobby.exception.NotFoundHobbyException;
 import com.dcm.hobbydetail.exception.NotFoundHobbyDetailException;
 import com.dcm.job.exception.NotFoundJobException;
+import com.dcm.party.exception.ExistPartyRequestException;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +12,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.Optional;
 
 @RestControllerAdvice
 @Slf4j
@@ -35,7 +35,6 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("알 수 없는 요청 값입니다."));
     }
 
-
     @ExceptionHandler({
         NotFoundJobException.class,
         NotFoundHobbyException.class,
@@ -47,6 +46,15 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(message));
+    }
+
+    @ExceptionHandler(ExistPartyRequestException.class)
+    public ResponseEntity<ErrorResponse> handleExistTargetException(RuntimeException exception) {
+        String message = exception.getMessage();
+        log.warn(message, exception);
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(new ErrorResponse(message));
     }
 
 

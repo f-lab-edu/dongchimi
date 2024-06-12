@@ -26,7 +26,6 @@ public class AuthService {
         TokenResponse token = clients.getToken(oAuth, code);
         UserInfoResponse userInfo = clients.getUserInfo(oAuth, token.accessToken(), token.tokenType());
 
-        // user update
         memberRepository.save(Member.of(userInfo));
         return token;
     }

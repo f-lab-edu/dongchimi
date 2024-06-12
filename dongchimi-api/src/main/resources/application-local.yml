@@ -27,6 +27,11 @@ spring:
     defer-datasource-initialization: true
     open-in-view: false
 
+  # redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 logging:
   level:

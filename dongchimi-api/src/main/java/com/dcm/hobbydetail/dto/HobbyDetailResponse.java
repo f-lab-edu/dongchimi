@@ -2,7 +2,6 @@ package com.dcm.hobbydetail.dto;
 
 import com.dcm.global.enumurate.YN;
 import com.dcm.hobbydetail.domain.HobbyDetail;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

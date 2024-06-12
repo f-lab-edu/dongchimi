@@ -1,5 +1,6 @@
 package com.dcm.party.controller;
 
+import com.dcm.party.dto.PartyJoinRequest;
 import com.dcm.party.dto.PartyRequest;
 import com.dcm.party.service.PartyService;
 import jakarta.validation.Valid;
@@ -19,9 +20,15 @@ public class PartyController {
     private final PartyService partyService;
 
     @PostMapping
-    public ResponseEntity<Void> writeParty(@RequestBody @Valid PartyRequest request) {
-        partyService.writeParty(request);
+    public ResponseEntity<Void> createParty(@RequestBody @Valid PartyRequest request) {
+        partyService.createParty(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<Void> requestPartyJoin(@RequestBody @Valid PartyJoinRequest request) {
+        partyService.requestPartyJoin(request);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

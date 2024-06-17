@@ -1,5 +1,6 @@
 package com.dcm.party.controller;
 
+import com.dcm.party.dto.PartyLikeRequest;
 import com.dcm.party.dto.PartyJoinRequest;
 import com.dcm.party.dto.PartyRequest;
 import com.dcm.party.service.PartyService;
@@ -28,6 +29,12 @@ public class PartyController {
     @PostMapping("/join")
     public ResponseEntity<Void> requestPartyJoin(@RequestBody @Valid PartyJoinRequest request) {
         partyService.requestPartyJoin(request);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/like")
+    public ResponseEntity<Void> executeLike(@RequestBody @Valid PartyLikeRequest request) {
+        partyService.executePartyLike(request);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

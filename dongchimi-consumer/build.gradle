@@ -4,4 +4,6 @@ jar { enabled = false }
 dependencies {
     implementation project(':dongchimi-party-domain')
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }

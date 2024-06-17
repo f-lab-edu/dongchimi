@@ -1,33 +1,31 @@
 package com.dcm.message.consumer;
 
-import com.dcm.chat.service.ChatService;
-import com.dcm.message.dto.MessageRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.dcm.message.handler.RedisMessageHandler;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
-public class RedisConsumer implements MessageListener {
+public class RedisConsumer implements MessageConsumer, MessageListener {
 
-    private final RedisTemplate<String, String> redisTemplate;
-    private final ObjectMapper objectMapper;
-    private final ChatService chatService;
+    private final Map<String, RedisMessageHandler> handler;
 
+    public RedisConsumer(List<RedisMessageHandler> handlers) {
+        Map<String, RedisMessageHandler> handler = new HashMap<>();
+        handlers.forEach(h -> handler.put(h.getChannelPattern(), h));
+        this.handler = handler;
+    }
     @Override
     public void onMessage(Message message, byte[] pattern) {
-        try {
-            String pubMessage = redisTemplate.getStringSerializer().deserialize(message.getBody());
-            MessageRequest messageRequest = objectMapper.readValue(pubMessage, MessageRequest.class);
-            chatService.createChatMessage(messageRequest.chatId(), messageRequest.email(), messageRequest.message());
-        } catch (Exception e) {
-            log.warn(e.getMessage(), e);
-        }
+        String channel = new String(pattern);
+        handler.keySet().forEach(key -> {
+            if (channel.startsWith(key)) {
+                handler.get(key).handleMessage(message);
+            }
+        });
     }
 
 }

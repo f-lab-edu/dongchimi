@@ -23,7 +23,7 @@
 ## 프로젝트 멀티 모듈 구조
 ### api 모듈
 - 이 모듈은 각 서비스의 API 인터페이스를 정의합니다.
-- 컨트롤러와 API 관련 DTO(Data Transfer Object)만 포함하여 service layer 와의 의존성을 최소화합니다.
+- 비즈니스 로직만을 포함하여 도메인과의 의존성을 최소화합니다.
 
 ### reactive 모듈
 - 실시간 기능을 처리하는 모듈로, 채팅 및 알림 기능을 구현합니다.
@@ -33,8 +33,8 @@
 - Message를 구독하는 Consumer들을 구현하는 모듈입니다.
 - Redis, Kafaka 등 외부에서 전달 받은 Message를 활용
 
-### Party domain 모듈
-- 모임 관련 도메인을 관리
+### domain 모듈
+- 동치미에 구성된 모든 도메인 정보를 제공하는 모듈입니다.
 ![image](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/d93ea816-9f26-4537-a792-275492ced1c8)
 
 

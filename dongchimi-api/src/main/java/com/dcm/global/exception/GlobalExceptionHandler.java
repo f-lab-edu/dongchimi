@@ -4,6 +4,7 @@ import com.dcm.hobby.exception.NotFoundHobbyException;
 import com.dcm.hobbydetail.exception.NotFoundHobbyDetailException;
 import com.dcm.job.exception.NotFoundJobException;
 import com.dcm.party.exception.ExistPartyRequestException;
+import com.dcm.party.exception.PartyLikePublishException;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -54,6 +55,15 @@ public class GlobalExceptionHandler {
         log.warn(message, exception);
 
         return ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(new ErrorResponse(message));
+    }
+
+    @ExceptionHandler(PartyLikePublishException.class)
+    public ResponseEntity<ErrorResponse> handleMessagePublishException(RuntimeException exception) {
+        String message = exception.getMessage();
+        log.warn(message, exception);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(new ErrorResponse(message));
     }
 

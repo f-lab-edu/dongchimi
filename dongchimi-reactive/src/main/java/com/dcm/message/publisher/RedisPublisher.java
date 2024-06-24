@@ -24,7 +24,6 @@ public class RedisPublisher implements MessagePublisher {
             String message = objectMapper.writeValueAsString(request);
             redisTemplate.convertAndSend(RedisConfig.SUBSCRIBE_PREFIX + request.chatId(), message);
         } catch (JsonProcessingException e) {
-            // TODO Exception Handler 통해 예외 처리
             throw new MessagePublishException(e.getMessage());
         }
     }

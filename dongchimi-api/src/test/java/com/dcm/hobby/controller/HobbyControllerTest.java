@@ -1,9 +1,9 @@
 package com.dcm.hobby.controller;
 
+import com.dcm.hobby.dto.HobbyResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dcm.common.ControllerTest;
 import com.dcm.hobby.dto.HobbyRequest;
-import com.dcm.hobby.dto.HobbyResponse;
 import com.dcm.hobby.dto.HobbyUpdateRequest;
 import com.dcm.hobby.service.HobbyService;
 import com.dcm.hobbydetail.dto.HobbyDetailResponse;

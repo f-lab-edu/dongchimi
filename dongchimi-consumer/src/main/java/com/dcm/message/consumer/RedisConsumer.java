@@ -18,6 +18,7 @@ public class RedisConsumer implements MessageConsumer, MessageListener {
         handlers.forEach(h -> handler.put(h.getChannelPattern(), h));
         this.handler = handler;
     }
+
     @Override
     public void onMessage(Message message, byte[] pattern) {
         String channel = new String(pattern);

@@ -9,14 +9,11 @@ import com.dcm.party.domain.Party;
 import com.dcm.party.domain.PartyJoinUser;
 import com.dcm.party.domain.repository.PartyJoinUserRepository;
 import com.dcm.party.domain.repository.PartyRepository;
-import com.dcm.party.dto.PartyLikePublishRequest;
-import com.dcm.party.dto.PartyLikeRequest;
 import com.dcm.party.dto.PartyJoinRequest;
+import com.dcm.party.dto.PartyLikeRequest;
 import com.dcm.party.dto.PartyRequest;
 import com.dcm.party.exception.ExistPartyRequestException;
 import com.dcm.party.exception.NotFoundPartyException;
-import com.dcm.party.exception.PartyLikePublishException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -35,7 +32,6 @@ public class PartyService {
     private final HobbyRepository hobbyRepository;
     private final ChatRepository chatRepository;
     private final StringRedisTemplate redisTemplate;
-    private final ObjectMapper objectMapper;
 
     @Transactional
     public void createParty(PartyRequest request) {
@@ -70,16 +66,10 @@ public class PartyService {
 
     public void executePartyLike(PartyLikeRequest request) {
         validateParty(request.partyId());
-        String key = "party:" + request.partyId();
-        try {
-            PartyLikePublishRequest pubRequest = new PartyLikePublishRequest(request.partyId(), key);
-            redisTemplate.convertAndSend(
-                LIKE_PARTY_SUBSCRIBE_PREFIX + request.partyId(),
-                objectMapper.writeValueAsString(pubRequest)
-            );
-        } catch (Exception e) {
-            throw new PartyLikePublishException(e.getMessage());
-        }
+        redisTemplate.convertAndSend(
+            LIKE_PARTY_SUBSCRIBE_PREFIX + request.partyId(),
+            request.partyId()
+        );
     }
 
     private void crateChat(Party party) {

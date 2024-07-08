@@ -1,8 +1,8 @@
 package com.dcm.party.controller;
 
+import com.dcm.party.dto.PartyRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dcm.common.ControllerTest;
-import com.dcm.party.dto.PartyRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

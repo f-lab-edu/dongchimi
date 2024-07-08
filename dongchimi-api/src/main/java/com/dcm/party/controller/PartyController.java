@@ -1,13 +1,16 @@
 package com.dcm.party.controller;
 
-import com.dcm.party.dto.PartyLikeRequest;
 import com.dcm.party.dto.PartyJoinRequest;
+import com.dcm.party.dto.PartyLikeRequest;
+import com.dcm.party.dto.PartyLikeResponse;
 import com.dcm.party.dto.PartyRequest;
 import com.dcm.party.service.PartyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PartyController {
 
     private final PartyService partyService;
+
+    @GetMapping("/like/{partyId}")
+    public ResponseEntity<PartyLikeResponse> readPartyLike(@PathVariable Long partyId) {
+        PartyLikeResponse response = partyService.readPartyLike(partyId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
     @PostMapping
     public ResponseEntity<Void> createParty(@RequestBody @Valid PartyRequest request) {

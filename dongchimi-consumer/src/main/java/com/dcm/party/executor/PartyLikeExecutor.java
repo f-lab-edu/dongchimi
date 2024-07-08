@@ -26,7 +26,6 @@ public class PartyLikeExecutor {
         this.executorService.scheduleAtFixedRate(this::executePartyLike, 0, 10, TimeUnit.SECONDS);
     }
 
-
     public void executePartyLike() {
         Map<Long, Long> contextMap = partyLikeContext.getAll();
         contextMap.forEach((key, value) -> {

@@ -21,8 +21,8 @@ public class PartyLikeContext {
         return new ConcurrentHashMap<>(partyLikeRequestMap);
     }
 
-    public void clearPartyLikeRequest() {
-        partyLikeRequestMap.clear();
+    public void clearPartyLikeRequest(Long partyId, Long clearCount) {
+        partyLikeRequestMap.merge(partyId, clearCount, (c, u) -> c - u);
     }
 
 }

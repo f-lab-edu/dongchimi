@@ -56,4 +56,8 @@ public class Party extends BaseEntity {
                 .build();
     }
 
+    public void setPartyLike(long like) {
+        this.vote = this.vote + like;
+    }
+
 }
